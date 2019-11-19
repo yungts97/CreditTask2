@@ -2,6 +2,8 @@ package com.example.credittask2;
 
 import android.widget.Switch;
 
+import com.android.volley.RequestQueue;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -23,11 +25,11 @@ public class PagerAdapter extends FragmentPagerAdapter {
         switch(position)
         {
             case 0:
-                return ShowingFragment.newInstance();
+                return ShowingFragment.newInstance(GlobalVariables.showingMovies);
             case 1:
-                return ComingFragment.newInstance();
+                return ComingFragment.newInstance(GlobalVariables.upcomingMovies);
             case 2:
-                return WatchFragment.newInstance();
+                return WatchFragment.newInstance(GlobalVariables.watchListMovies);
 
         }
         return null;

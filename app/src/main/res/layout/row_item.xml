@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintLeft_toRightOf="@id/imageView"
+        app:layout_constraintTop_toTopOf="@id/imageView"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/textView_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@id/textView_title"
+        app:layout_constraintTop_toBottomOf="@id/textView_title"/>
+
+    <TextView
+        android:id="@+id/textView_popularity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@id/textView_title"
+        app:layout_constraintTop_toBottomOf="@id/textView_genre"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
