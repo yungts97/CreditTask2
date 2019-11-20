@@ -1,9 +1,4 @@
 package com.example.credittask2;
-
-import android.widget.Switch;
-
-import com.android.volley.RequestQueue;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -30,9 +25,10 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 return ComingFragment.newInstance(GlobalVariables.upcomingMovies);
             case 2:
                 return WatchFragment.newInstance(GlobalVariables.watchListMovies);
+                default:
+                    return null;
 
         }
-        return null;
     }
 
     @Override

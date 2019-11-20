@@ -42,7 +42,6 @@ public class ShowingFragment extends Fragment {
     private ArrayList<String> urls;
     private RequestQueue queue;
     private Genre genreMaker;
-    //private OnFragmentInteractionListener mListener;
 
     public ShowingFragment() {
         // Required empty public constructor
@@ -68,6 +67,7 @@ public class ShowingFragment extends Fragment {
         urls = new ArrayList<>();
         genreMaker = new Genre();
         queue = Volley.newRequestQueue(getContext());
+        getMovieFromRemoteServer();
     }
 
     @Override
@@ -76,7 +76,8 @@ public class ShowingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_showing, container, false);
         recyclerView = view.findViewById(R.id.recylerLayout);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        getMovieFromRemoteServer();
+        myAdapter = new RecyclerViewAdapter(movieList);
+        recyclerView.setAdapter(myAdapter);
         return view;
     }
 
@@ -145,32 +146,4 @@ public class ShowingFragment extends Fragment {
             }
         });
     }
-
-   /* public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

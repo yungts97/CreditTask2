@@ -43,9 +43,6 @@ public class ComingFragment extends Fragment {
     private RequestQueue queue;
     private Genre genreMaker;
 
-
-    //private OnFragmentInteractionListener mListener;
-
     public ComingFragment() {
         // Required empty public constructor
     }
@@ -70,6 +67,7 @@ public class ComingFragment extends Fragment {
         urls = new ArrayList<>();
         genreMaker = new Genre();
         queue = Volley.newRequestQueue(getContext());
+        getMovieFromRemoteServer();
     }
 
     @Override
@@ -78,7 +76,8 @@ public class ComingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_coming, container, false);
         recyclerView = view.findViewById(R.id.recylerLayout);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        getMovieFromRemoteServer();
+        myAdapter = new RecyclerViewAdapter2(movieList);
+        recyclerView.setAdapter(myAdapter);
         return view;
     }
 
@@ -148,33 +147,5 @@ public class ComingFragment extends Fragment {
         });
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    /*public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
 }

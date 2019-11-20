@@ -22,11 +22,13 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
     private final int THUMBNAIL_WIDTH = 1280;
     private final int THUMBNAIL_HEIGTH = 720;
     private Movie movie;
+    private boolean watch_list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
         movie = getIntent().getExtras().getParcelable(GlobalVariables.MOVIE_KEY);
+        watch_list = getIntent().getBooleanExtra("watch_list",false);
 
         textTitle = findViewById(R.id.txt_title);
         textPopularity = findViewById(R.id.txt_popularity);
@@ -38,6 +40,11 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
         textTitle.setText(movie.getTitle());
         textPopularity.setText("Popularity: " + movie.getPopularity());
         textOverview.setText(movie.getOverview());
+        if(watch_list)
+        {
+            ButtonAdd.setVisibility(View.INVISIBLE);
+            ButtonAdd.setEnabled(false);
+        }
         ImageLoad(movie.getBanner_path());
     }
 

@@ -60,6 +60,18 @@ public class WatchFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        imagesPosition.clear();
+        urls.clear();
+        movieIDs.clear();
+        movieList.clear();
+        initData();
+        myAdapter = new RecyclerViewAdapter3(movieList);
+        recyclerView.setAdapter(myAdapter);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -70,6 +82,20 @@ public class WatchFragment extends Fragment {
         movieIDs = new ArrayList<>();
         queue = Volley.newRequestQueue(getContext());
         genreMaker = new Genre();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_watch, container, false);
+        recyclerView = view.findViewById(R.id.recylerLayout);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        return view;
+    }
+
+    private void initData()
+    {
         DatabaseAdapter db = new DatabaseAdapter(getContext());
         db.open();
         Cursor c = db.getAllItems();
@@ -79,19 +105,10 @@ public class WatchFragment extends Fragment {
             c.moveToNext();
         }
         db.close();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_watch, container, false);
-        recyclerView = view.findViewById(R.id.recylerLayout);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         for(int i = 0; i < movieIDs.size(); i++)
         {
             getMovieFromRemoteServer(movieIDs.get(i));
         }
-        return view;
     }
 
     public void getMovieFromRemoteServer(int movieID)

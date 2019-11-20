@@ -63,6 +63,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             int pos = getAdapterPosition();
             Intent intent = new Intent(context,MovieDetailActivity.class);
             intent.putExtra(GlobalVariables.MOVIE_KEY,movieArrayList.get(pos));
+            intent.putExtra("watch_list",false);
             context.startActivity(intent);
 
         }
